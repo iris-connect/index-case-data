@@ -1,0 +1,27 @@
+title Contact Diary Upload from Browser
+
+participant "Browser" as Client
+participant "Webapp Server" as Host
+
+participant "IRIS Proxy" as IRIS
+participant GA Bielefeld
+
+note over Client:Trusted browser forum CA certificates
+note over Host:List of health authorities' public keys\nList of health authorities' IRIS proxy domains
+note over IRIS:Map of health authorities' IRIS proxy domains to\nhealth authorities
+note over GA Bielefeld:TLS certificate and private key for\niris-proxy.ga-bielefeld.de
+Client->Host:HTTP GET Request
+Host->Client:HTTP Response:\nJavaScript client\nList of health authorities' public keys\nList of health authorities' IRIS proxy domains
+Client->Client:User enters contact diary, responsible health authority\n'ga-bielefeld' is determined based on user ZIP code
+Client->Client:DNS resolution (browser) for proxy domain iris-proxy.ga-bielefeld.com
+Client->IRIS:TLS Client Hello\nSNI = iris-proxy.ga-bielefeld.com
+note over IRIS:IRIS proxy does not possess the private key to the\nTLS certificate for iris-proxy.ga-bielefeld.de\n\nIRIS proxy can't request its own TLS certificate for \niris-proxy.ga-bielefeld.de via ACME due to CAA record
+IRIS->GA Bielefeld:TLS Client Hello (over established tunnel)\nSNI = iris-proxy.ga-bielefeld.com
+IRIS<-GA Bielefeld:TLS Server Hello (over established tunnel)\nCertificate
+Client<-IRIS:TLS Server Hello\nCertificate
+Client->Client:Certificate validation (browser)
+Client->Client:encrypt contact diary with ECIES to \nhealth authorities' public key
+Client->GA Bielefeld:HTTP POST Request / gRPC\nenc_ecies(contact diary)
+Client<-GA Bielefeld:HTTP Response / gRPC\nenc_ecies(token)
+
+Client->Client:decrypt and display token
