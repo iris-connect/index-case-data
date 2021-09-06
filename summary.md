@@ -12,10 +12,10 @@ Eine erkrankte Person, die auf COVID-19 getestet wird und wegen eines positiven 
 Das für die Betreuung der Indexperson zuständige Gesundheitsamt.
 
 
-## Softwareakteuere:
+## Softwareakteure:
 
 ### Corona-Warn-App (CWA)
-Die Corona-Warn-App der Indexperson
+Die Corona-Warn-App der Indexperson.
 
 ### IRIS Client (IRIS) 
 Der IRIS Client im Gesundheitsamt, der entsprechende Daten entgegennehmen kann.
@@ -23,11 +23,11 @@ Der IRIS Client im Gesundheitsamt, der entsprechende Daten entgegennehmen kann.
 ## Datenstrukturen:
 
 ### Fallinformationen (FI)
-Zur Indexperson gehörende Informationen wie etwa der Impfstatus sowie der Symptombeginn der Erkrankung
+Zur Indexperson gehörende Informationen wie etwa der Impfstatus sowie der Symptombeginn der Erkrankung.
 
 Mögliche hilfreiche Fallinformationen:
 #### Symptombeginn
-Angabe des Symptombeginns in Relation zu Test.
+Angabe des Symptombeginns in Relation zu Test. (Testentnahmedatum ist Teil der DEMIS-Meldung?)
 
 #### Impfstatus
 Abbildung in SORMAS / anderen Anwendungen über mögliches Matching mit Impfzertifikat
@@ -43,24 +43,27 @@ Bei Vorhandensein eines Genesenenzertifikats ist von einer Reinfektion auszugehe
 
 #### weitere mögliche Datenpunkte 
 Die folgenden Datenpunkte wären aus Sicht der IP für die weitere Statistik möglich, sind aber nicht Teil der Basisdaten der CWA
-- Symptome 
+- Symptome (muss evaluiert werden, ob verlässlich)
 
 
 ### Kontaktinformationen (KI)
-Kontaktpersonen oder Orte zu denen die Indexperson im relevanten Zeitraum Kontakt hatte, idealerweise bereits gepflegt im Kontakttagebuch der CWA. Diese Informationen können aber auch vor der Übermittlung ergänzt werden.
+Kontaktpersonen oder Orte zu denen die Indexperson im relevanten Zeitraum Kontakt hatte, idealerweise bereits gepflegt im Kontakttagebuch der CWA. Diese Informationen können aber auch vor der Übermittlung durch die Indexperson ergänzt werden.
 
 #### Informationen zu Kontaktpersonen
 - Name
 - Telefon 
 - E-Mail
+- ggf. Adresse (wenn vorhanden)
 - Datum letzter Kontakt
 - Notizen / Kommentar
+
 
 #### Ereignis
 - Bezeichnung
 - Ort
 - Datum
 - Notizen / Kommentar
+- Name, Kontakt Ansprechperson/Organisation des Ereignisses(?)
 
 ## grober Ablauf
 1. Eine Indexperson IP registriert in ihrer CWA einen Test und wartet auf ihr Testergebnis
